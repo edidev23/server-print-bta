@@ -46,11 +46,11 @@ app.post("/print-document", function (request, response) {
         </div>`;
 
     section.text.forEach((text) => {
-      html += `<div class="section-text" style="font-size: 20px;">${text}</div>`;
+      html += `<div class="section-text" style="font-size: 20px; margin-bottom: 20px;">${text}</div>`;
     });
 
     html += `
-    </div>`; 
+    </div>`;
   });
 
   wkhtmltopdf(html, {
