@@ -50,7 +50,7 @@ app.post("/print-document", function (request, response) {
     });
 
     html += `
-    </div>`;
+    </div>`; 
   });
 
   wkhtmltopdf(html, {
