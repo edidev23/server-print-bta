@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const port = 3000;
 var wkhtmltopdf = require("wkhtmltopdf");
+const fs = require("fs");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
@@ -29,13 +30,8 @@ app.get("/print-test", (req, res) => {
 
 // Access the parse results as request.body
 app.post("/print-document", function (request, response) {
-  console.log(request.body);
+  // console.log(request.body);
   let dataPreview = request.body;
-
-  response.writeHead(200, {
-    "Content-Type": "application/pdf",
-    "Content-disposition": "attachment;filename=bta.pdf",
-  });
 
   let html = "";
 
@@ -90,13 +86,20 @@ app.post("/print-document", function (request, response) {
     </div>`;
   });
 
+  // wkhtmltopdf(html, { pageSize: "a4" }).pipe(fs.createWriteStream("bta.pdf"));
+  // response.send(html)
+
+  response.writeHead(200, {
+    "Content-Type": "application/pdf",
+    "Content-disposition": "attachment;filename=bta.pdf",
+  });
+
   wkhtmltopdf(html, {
     pageSize: "A4",
     //  orientation: 'Landscape',
     marginLeft: "10mm",
     marginTop: "10mm",
   }).pipe(response);
-  console.log("All done");
 });
 
 app.listen(port, () => {
