@@ -13,7 +13,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/print-test", (req, res) => {
-
   res.writeHead(200, {
     "Content-Type": "application/pdf",
     "Content-disposition": "attachment;filename=bta.pdf",
@@ -54,9 +53,31 @@ app.post("/print-document", function (request, response) {
     </div>
     <hr style="border: 1px solid black; margin: 10px 0 20px 0" />`;
 
+  html += `<div style="font-size: 20px; margin-bottom:20px; font-weight: bold;">${dataPreview.templatE_TITLE}</div>`;
+
+  html += `
+    <div style="padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-bottom: 35px;">`;
+
   dataPreview.sections.forEach((section) => {
     html += `
-    <div style="margin-bottom:40px">
+    <div style="font-size: 18px;
+    cursor: pointer;
+    margin:3px 0;
+    font-weight: bold;">
+      <a style="color: black !important" href="#${section.title}">${section.title}</a>
+    </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  dataPreview.sections.forEach((section) => {
+    html += `
+    <div id="${section.title}" style="margin-bottom:40px">
         <div style="font-size: 20px; margin-bottom:20px; font-weight: bold;">
           ${section.title}
         </div>`;
