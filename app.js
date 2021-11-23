@@ -9,8 +9,23 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));
 
 app.get("/", (req, res) => {
-  res.writeHead(200, { "Content-Type": "application/json" });
   res.send("BTA Academy");
+});
+
+app.get("/print-test", (req, res) => {
+
+  res.writeHead(200, {
+    "Content-Type": "application/pdf",
+    "Content-disposition": "attachment;filename=bta.pdf",
+  });
+
+  wkhtmltopdf("document OK", {
+    pageSize: "A4",
+    //  orientation: 'Landscape',
+    marginLeft: "10mm",
+    marginTop: "10mm",
+  }).pipe(response);
+  console.log("All done");
 });
 
 // Access the parse results as request.body
