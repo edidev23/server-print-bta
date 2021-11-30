@@ -36,20 +36,28 @@ app.post("/print-document", function (request, response) {
   let html = "";
 
   html += `
-    <div style="font-size: 20px; font-weight: bold">INDUSTRY : ${
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;700&display=swap');
+
+    .heading {
+        font-family: "Roboto Slab", serif !important; color: #00395d;
+    }
+    </style>
+
+    <div class="heading" style="font-size: 20px; font-weight: bold">INDUSTRY : ${
       dataPreview.industry
     }</div>
-    <div style="font-size: 20px;">SIZE : ${dataPreview.Size.name}</div>
-    <div style="font-size: 20px;">
+    <div class="heading" style="font-size: 20px;">SIZE : ${dataPreview.Size.name}</div>
+    <div class="heading" style="font-size: 20px;">
         DIVISION : ${dataPreview.division ? dataPreview.division : "-"}
     </div>
-    <div style="font-size: 20px;">
+    <div class="heading" style="font-size: 20px;">
         DEPARTMENT :
         ${dataPreview.department ? dataPreview.department : "-"}
     </div>
     <hr style="border: 1px solid black; margin: 10px 0 20px 0" />`;
 
-  html += `<div style="font-size: 20px; margin-bottom:20px; font-weight: bold;">${dataPreview.templatE_TITLE}</div>`;
+  html += `<div class="heading" style="font-size: 20px; margin-bottom:20px; font-weight: bold;">${dataPreview.templatE_TITLE}</div>`;
 
   html += `
     <div style="padding-top: 10px;
@@ -64,7 +72,7 @@ app.post("/print-document", function (request, response) {
     cursor: pointer;
     margin:3px 0;
     font-weight: bold;">
-      <a style="color: black !important" href="#${section.title}">${section.title}</a>
+      <a class="heading" href="#${section.title}">${section.title}</a>
     </div>
     `;
   });
@@ -74,7 +82,7 @@ app.post("/print-document", function (request, response) {
   dataPreview.sections.forEach((section) => {
     html += `
     <div id="${section.title}" style="margin-bottom:40px">
-        <div style="font-size: 20px; margin-bottom:20px; font-weight: bold;">
+        <div class="heading" style="font-size: 20px; margin-bottom:20px; font-weight: bold;">
           ${section.title}
         </div>`;
 
