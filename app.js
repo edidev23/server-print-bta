@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));
 
 app.get("/", (req, res) => {
-  res.send("BTA Academy");
+  res.send("BTA Academyd");
 });
 
 app.get("/print-test", (req, res) => {
@@ -98,7 +98,12 @@ app.post("/print-document", function (request, response) {
     pageSize: "A4",
     //  orientation: 'Landscape',
     marginLeft: "10mm",
-    marginTop: "10mm",
+    marginTop: "28mm",
+    marginBottom: "15mm",
+    headerSpacing: "3",
+    footerSpacing: "5",
+    headerHtml: "./assets/header.html",
+    footerHtml: "./assets/footer.html"
   }).pipe(response);
 });
 
