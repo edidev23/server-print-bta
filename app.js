@@ -37,10 +37,13 @@ app.post("/print-document", function (request, response) {
 
   html += `
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab:wght@300;700&display=swap');
 
     .heading {
         font-family: "Roboto Slab", serif !important; color: #00395d;
+    }
+    .section-text {
+      font-family: "Roboto", sans-serif;
     }
     </style>
 
